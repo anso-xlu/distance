@@ -1,0 +1,35 @@
+<nav>
+  <mat-toolbar *ngIf="!showSearch">
+    <a href="/"><img src="assets/logo.png"></a>
+    <a><span>afdasf</span></a>
+    <a><span>fdasf</span></a>
+    <div></div>
+    <a>
+      <mat-icon matBadge="15" matBadgeColor="warn" matBadgeSize="small">notifications_none</mat-icon>
+    </a>
+    <a><span>fads</span></a>
+    <a (click)="showSearch = !showSearch">
+      <mat-icon>search</mat-icon>
+    </a>
+  </mat-toolbar>
+
+  <mat-toolbar class="search-content" *ngIf="showSearch">
+    <input placeholder="search">
+    <button mat-icon-button (click)="showSearch = !showSearch">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-toolbar>
+</nav>
+
+<mat-sidenav-container (click)="showSearch = false">
+  <mat-sidenav mode="side" opened>
+    <app-menu></app-menu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <header>
+      <h1></h1>
+    </header>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+

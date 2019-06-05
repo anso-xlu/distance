@@ -1,0 +1,40 @@
+.login-page {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  mat-card {
+    width: 380px;
+    height: 330px;
+
+    mat-card-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      height: 170px;
+      margin: 15px 0;
+
+      mat-form-field{
+        width: 250px;
+      }
+
+    }
+
+    mat-card-actions {
+      display: flex;
+      justify-content: center;
+      button {
+        width: 120px;
+      }
+    }
+  }
+
+}
+
+
+
+
