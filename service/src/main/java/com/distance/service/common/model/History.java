@@ -1,26 +1,32 @@
 package com.distance.service.common.model;
 
+import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.util.Date;
 
-public interface History<ID extends Serializable> {
+@MappedSuperclass
+@Data
+public class History<ID extends Serializable> {
     /**
      * 创建人ID
      */
-    ID getCreator();
-
+    protected ID creator;
     /**
      * 创建时间
      */
-    Date getCreateTime();
-
+    @CreationTimestamp
+    protected Date createTime;
     /**
      * 最后操作人ID
      */
-    ID getLastOperator();
-
+    protected ID lastOperator;
     /**
      * 更新时间
      */
-    Date getUpdateTime();
+    @UpdateTimestamp
+    protected Date updateTime;
 }

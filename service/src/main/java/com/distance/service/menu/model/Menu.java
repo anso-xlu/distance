@@ -2,6 +2,8 @@ package com.distance.service.menu.model;
 
 import com.distance.service.common.model.Tree;
 import lombok.Data;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,6 +14,8 @@ import java.util.List;
  */
 @Entity
 @Table
+@DynamicInsert
+@DynamicUpdate
 @Data
 public class Menu implements Tree<Menu, Integer> {
     @Id

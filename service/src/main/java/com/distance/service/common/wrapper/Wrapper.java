@@ -23,10 +23,8 @@ public class Wrapper {
     }
 
     public static Result result(Object data, ECode eCode, String msg) {
-        return new Result(data,
-                eCode.getStatus().value(),
-                Integer.valueOf(eCode.name().split("_")[1]),
-                msg != null ? msg : eCode.getMsg());
+        if (msg == null) msg = eCode.getMsg();
+        return new Result(data, eCode.getStatus().value(), eCode.getCode(), msg);
     }
 
 }

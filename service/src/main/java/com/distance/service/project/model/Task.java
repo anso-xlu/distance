@@ -1,18 +1,19 @@
 package com.distance.service.project.model;
 
 import com.distance.service.common.model.History;
-import com.distance.service.project.model.Project;
-import com.distance.service.user.model.User;
 import lombok.Data;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table
+@DynamicInsert
+@DynamicUpdate
 @Data
-public class Task implements History<Integer> {
+public class Task extends History<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -21,12 +22,8 @@ public class Task implements History<Integer> {
     private String description;
     private Project project;
 
-    private Integer creator;
-    private Date createTime;
-    private Integer lastOperator;
-    private Date updateTime;
-
     private Boolean end;
 
+    @OneToMany(mappedBy = "task")
     private List<Plan> plans;
 }

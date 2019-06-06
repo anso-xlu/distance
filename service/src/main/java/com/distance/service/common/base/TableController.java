@@ -1,14 +1,15 @@
 package com.distance.service.common.base;
 
 import com.distance.service.common.model.Result;
+import com.distance.service.common.support.Validator;
 import com.distance.service.common.wrapper.Wrapper;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
@@ -28,8 +29,7 @@ public abstract class TableController<T, ID extends Serializable, R extends Base
      */
     @GetMapping
     @ResponseBody
-    public Result<T> searchPage(@Valid T vo, Integer pageNumber, Integer sizeNumber) {
-
+    public Result<T> searchPage(@Validated T vo, Integer pageNumber, Integer sizeNumber) {
         //不进行条件筛选
         Page<T> page;
         if (vo == null) {
@@ -50,7 +50,7 @@ public abstract class TableController<T, ID extends Serializable, R extends Base
      */
     @PostMapping
     @ResponseBody
-    public Result<T> save(@Valid T vo) {
+    public Result<T> save(@Validated(Validator.save.class) T vo) {
         return Wrapper.ok(getRepository().saveAndFlush(vo));
     }
 

@@ -51,14 +51,14 @@ public class GlobalExceptionHandler {
         if (msg.startsWith("JSON parse error: parse enum")) {
             String name = msg.substring(msg.lastIndexOf("$") + 1, msg.lastIndexOf(" error"));
             String value = msg.substring(msg.lastIndexOf(": ") + 1);
-            return Wrapper.result(null, ECode.G_990001,
-                    String.format("%s: %s=%s", ECode.G_990001.getMsg(), name.toLowerCase(), value));
+            return Wrapper.result(null, ECode.G_0001,
+                    String.format("%s: %s=%s", ECode.G_0001.getMsg(), name.toLowerCase(), value));
         }
 
         if (e.getCause() instanceof JsonParseException) {
-            return Wrapper.error(ECode.G_990003);
+            return Wrapper.error(ECode.G_0003);
         }
-        return Wrapper.error(ECode.G_990004);
+        return Wrapper.error(ECode.G_0004);
     }
 
     /**
@@ -68,7 +68,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
     public Result httpRequestMethodNotSupportedException(HttpServletRequest request, HttpRequestMethodNotSupportedException e) {
         logError(request, e, null);
-        return Wrapper.error(ECode.G_990005);
+        return Wrapper.error(ECode.G_0005);
     }
 
     /**
@@ -90,7 +90,7 @@ public class GlobalExceptionHandler {
         sb.append("]");
 
         logError(request, null, sb.toString());
-        return Wrapper.result(null, ECode.G_990001, fieldErrors.get(0).getDefaultMessage());
+        return Wrapper.result(null, ECode.G_0001, fieldErrors.get(0).getDefaultMessage());
     }
 
     /**
