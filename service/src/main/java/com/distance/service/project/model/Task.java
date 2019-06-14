@@ -1,11 +1,14 @@
 package com.distance.service.project.model;
 
 import com.distance.service.common.model.History;
+import com.distance.service.common.support.Checker;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -13,16 +16,20 @@ import java.util.List;
 @DynamicInsert
 @DynamicUpdate
 @Data
-public class Task extends History<Integer> {
+public class Task extends History {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String version;
+
+    @NotBlank(groups = {Checker.Create.class})
     private String name;
     private String description;
-    private Project project;
 
-    private Boolean end;
+    private boolean over;
+
+    @NotNull(groups = {Checker.Create.class})
+    @ManyToOne
+    private Version version;
 
     @OneToMany(mappedBy = "task")
     private List<Plan> plans;

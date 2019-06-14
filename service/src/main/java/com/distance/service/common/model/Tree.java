@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * tree 对象继承, treeWrapper
  */
-public interface Tree<T extends Tree, ID extends Serializable> {
+public interface Tree<ID extends Serializable, T extends Tree> {
 
     ID getId();
 
@@ -16,8 +16,8 @@ public interface Tree<T extends Tree, ID extends Serializable> {
     void setChildren(List<T> list);
 
     /**
-     * 排序等级
+     * 排序
      */
-    Integer getLevel();
+    Integer getSort();
 
 }

@@ -51,7 +51,7 @@ public class GlobalExceptionHandler {
         if (msg.startsWith("JSON parse error: parse enum")) {
             String name = msg.substring(msg.lastIndexOf("$") + 1, msg.lastIndexOf(" error"));
             String value = msg.substring(msg.lastIndexOf(": ") + 1);
-            return Wrapper.result(null, ECode.G_0001,
+            return Wrapper.error(ECode.G_0001,
                     String.format("%s: %s=%s", ECode.G_0001.getMsg(), name.toLowerCase(), value));
         }
 
@@ -90,7 +90,7 @@ public class GlobalExceptionHandler {
         sb.append("]");
 
         logError(request, null, sb.toString());
-        return Wrapper.result(null, ECode.G_0001, fieldErrors.get(0).getDefaultMessage());
+        return Wrapper.error(ECode.G_0001, fieldErrors.get(0).getDefaultMessage());
     }
 
     /**

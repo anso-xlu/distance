@@ -26,14 +26,14 @@ public class TreeWrapper {
             if (map.containsKey(e.getId()))
                 e.setChildren(map.get(e.getId())
                         .stream().sorted(Comparator.comparing(
-                                vo -> vo.getLevel() != null ? vo.getLevel() : Integer.MAX_VALUE
+                                vo -> vo.getSort() != null ? vo.getSort() : Integer.MAX_VALUE
                         )).collect(Collectors.toList()));
         });
         // 获取prentId 相同的元素,并排序
         return list.stream()
                 .filter(t -> t.getParentId().equals(parentId == null ? 0 : parentId))
                 .sorted(Comparator.comparing(
-                        vo -> vo.getLevel() != null ? vo.getLevel() : Integer.MAX_VALUE
+                        vo -> vo.getSort() != null ? vo.getSort() : Integer.MAX_VALUE
                 )).collect(Collectors.toList());
     }
 

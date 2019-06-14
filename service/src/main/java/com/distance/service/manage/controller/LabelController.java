@@ -1,8 +1,6 @@
 package com.distance.service.manage.controller;
 
-import com.distance.service.common.base.BaseController;
 import com.distance.service.common.model.Result;
-import com.distance.service.common.wrapper.Wrapper;
 import com.distance.service.manage.model.Label;
 import com.distance.service.manage.repository.LabelRepository;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,12 +12,8 @@ import javax.annotation.Resource;
 
 @RestController
 @RequestMapping("/manage/label")
-public class LabelController extends BaseController<Label, Integer, LabelRepository> {
+public class LabelController {
     @Resource
-    private LabelRepository labelRepository;
+    private LabelRepository repository;
 
-    @PostMapping
-    public Result save(@RequestBody Label label) {
-        return null;
-    }
 }

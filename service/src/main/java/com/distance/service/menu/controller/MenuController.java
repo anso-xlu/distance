@@ -1,6 +1,5 @@
 package com.distance.service.menu.controller;
 
-import com.distance.service.common.base.BaseController;
 import com.distance.service.common.model.Result;
 import com.distance.service.common.wrapper.TreeWrapper;
 import com.distance.service.common.wrapper.Wrapper;
@@ -15,13 +14,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/menu")
-public class MenuController extends BaseController<Menu, Integer, MenuRepository> {
+public class MenuController {
     @Resource
-    private MenuRepository menuRepository;
+    private MenuRepository repository;
 
     @GetMapping("/getMenu")
     public Result getMenu() {
-        List<Menu> menus = TreeWrapper.asTree(menuRepository.findAll(), 0);
+        List<Menu> menus = TreeWrapper.asTree(repository.findAll(), 0);
         return Wrapper.ok(menus);
     }
+
 }

@@ -17,7 +17,7 @@ import java.util.List;
 @DynamicInsert
 @DynamicUpdate
 @Data
-public class Menu implements Tree<Menu, Integer> {
+public class Menu implements Tree<Integer, Menu> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -30,7 +30,7 @@ public class Menu implements Tree<Menu, Integer> {
     /**
      * 排序等级
      */
-    private Integer level;
+    private Integer sort;
 
     private Integer parentId;
     @Transient

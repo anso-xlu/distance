@@ -29,6 +29,7 @@ public class Plan {
     private Date endTime;
 
     private User member;
+
     private Grouped grouped;
 
     @ManyToOne

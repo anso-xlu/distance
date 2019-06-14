@@ -1,7 +1,8 @@
 package com.distance.service.common.model;
 
+import com.distance.service.common.constants.Const;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -10,7 +11,8 @@ import java.util.List;
  * @param <T>
  */
 @Getter
-public class ResultPage<T> {
+@AllArgsConstructor
+public class PageWrapper<T> {
     /**
      * 返回数据
      */
@@ -44,14 +46,11 @@ public class ResultPage<T> {
      */
     private long sizeTotal;
 
-    public ResultPage(Page page) {
-        this.data = page.getContent();
-        this.sizeNumber = page.getSize();
-        this.pageNumber = page.getNumber();
-        this.hasNext = page.hasNext();
-        this.isFirst = page.isFirst();
-        this.isLast = page.isLast();
-        this.pageTotal = page.getTotalPages();
-        this.sizeTotal = page.getTotalElements();
+    public void setSizeNumber(Integer sizeNumber) {
+        this.sizeNumber = sizeNumber != null ? sizeNumber : Const.SIZE_NUMBER;
+    }
+
+    public void setPageNumber(Integer pageNumber) {
+        this.pageNumber = pageNumber != null ? pageNumber - 1 : Const.PAGE_NUMBER;
     }
 }

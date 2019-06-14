@@ -49,7 +49,7 @@ public enum ECode {
     public int getCode() {
         String[] split = this.name().split("_");
         Integer code = Integer.valueOf(split[1]);
-        if (code < 1000) {
+        if (split[1].length() == 3) {
             return code;
         } else {
             switch (split[0]) {
